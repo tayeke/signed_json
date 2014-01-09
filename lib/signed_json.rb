@@ -25,6 +25,8 @@ module SignedJson
     def digest_for(input)
       require 'openssl' unless defined?(OpenSSL) # from ActiveSupport::MessageVerifier
       digest = OpenSSL::Digest::SHA1.new
+      ap input
+      ap @secret
       OpenSSL::HMAC.hexdigest(digest, @secret, input.to_json)
     end
 
