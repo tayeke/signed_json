@@ -24,11 +24,7 @@ module SignedJson
     # e.g. in Python, specify separators=(',',':') to eliminate whitespace.
     def digest_for(input)
       require 'openssl' unless defined?(OpenSSL) # from ActiveSupport::MessageVerifier
-      ap @digest
-      ap OpenSSl::Digest
-      digest = OpenSSL::Digest.const_get(@digest).new
-      ap input
-      ap @secret
+      digest = OpenSSL::Digest::SHA1.new
       ap digest
       OpenSSL::HMAC.hexdigest(digest, @secret, input.to_json)
     end
